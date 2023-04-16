@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.nicolatesser.androidquiztemplate"
+    android:installLocation="preferExternal"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="15" />
+
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.nicolatesser.androidquiztemplate.QuizActivity"
+            android:label="@string/app_name"
+            android:exported="true">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.nicolatesser.androidquiztemplate.SettingsActivity"
+            android:label="@string/app_name"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name="com.nicolatesser.androidquiztemplate.activity.MainActivity"
+            android:label="@string/title_activity_main"  android:exported="true">
+        </activity>
+        <activity
+            android:name="com.nicolatesser.androidquiztemplate.activity.QuizActivity"
+            android:screenOrientation="sensorPortrait"
+            android:label="@string/title_activity_one_player_quiz"  android:exported="true">
+        </activity>
+        <activity
+            android:name="com.nicolatesser.androidquiztemplate.activity.ResetActivity"
+            android:label="@string/title_activity_one_player_quiz"  android:exported="true">
+        </activity>
+        <activity
+            android:name="com.nicolatesser.androidquiztemplate.activity.EndOfGameActivity"
+            android:label="@string/title_activity_end_of_game"  android:exported="true">
+        </activity>
+    </application>
+
+</manifest>
