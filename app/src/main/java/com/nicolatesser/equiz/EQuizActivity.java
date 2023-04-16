@@ -17,6 +17,7 @@ import java.util.Random;
 
 public class EQuizActivity extends QuizActivity {
 
+    private static final Integer MAX_ANSWERS_SIZE = 4;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -66,23 +67,39 @@ public class EQuizActivity extends QuizActivity {
         answers.add(new Answer(Integer.toString(res), true));
 
 
-        while (answers.size()<4){
-            addIfNewWrongAnswer(wrongAnswerPlusMinuxDelta(res),answers);
-            addIfNewWrongAnswer(wrongAnswerMultiplyDelta(a,b),answers);
-            addIfNewWrongAnswer(wrongAnswerMultiplyDelta(a,b),answers);
+        int attempts = 0;
+        while (answers.size()<MAX_ANSWERS_SIZE && attempts<=3){
+            addIfValidWrongAnswer(wrongAnswerPlusMinuxDelta(res),answers,MAX_ANSWERS_SIZE);
+            addIfValidWrongAnswer(wrongAnswerMultiplyDelta(a,b),answers,MAX_ANSWERS_SIZE);
+            addIfValidWrongAnswer(wrongAnswerMultiplyDelta(a,b),answers,MAX_ANSWERS_SIZE);
+            attempts++;
         }
 
 
         return new Question(a+" x "+b+ " = ", answers, new ArrayList<>());
     }
 
-    private void addIfNewWrongAnswer(Answer answerToAdd,List<Answer> answers) {
+    private void addIfValidWrongAnswer(Answer answerToAdd,List<Answer> answers, int maxSize) {
+        if (answers.size()>= maxSize){
+            return;
+        }
+
+        if (isInvalidAnswer(answerToAdd)){
+            return;
+        }
+
         for (Answer answer:answers){
+
             if (answerToAdd.getText().equals(answer.getText())){
                 return;
             }
+
         }
         answers.add(answerToAdd);
+    }
+
+    private boolean isInvalidAnswer(Answer answerToAdd) {
+        return Integer.parseInt(answerToAdd.getText()) < 0;
     }
 
 
